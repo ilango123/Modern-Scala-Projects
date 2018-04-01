@@ -1,20 +1,14 @@
 organization := "com.packt.modern.chapter2"
-
 name := "Chapter2"
-
 version := "0.1"
 
 scalaVersion := "2.11.12"
 
-/*sparkVersion := "2.2.1"
-sparkComponents += "mllib"
-sparkComponents ++= Seq("sql")*/
 // Compiler settings. Use scalac -X for other options and their description.
 // See Here for more info http://www.scala-lang.org/files/archive/nightly/docs/manual/html/scalac.html
 scalacOptions ++= List("-feature","-deprecation", "-unchecked", "-Xlint")
 
 libraryDependencies ++= Seq(
-
   "org.apache.spark" %% "spark-core" % "2.2.1",
   "org.apache.spark" %% "spark-mllib" % "2.2.1",
   "org.apache.spark" %% "spark-sql" % "2.2.1",
@@ -45,6 +39,6 @@ fork in test := true
 javaOptions in run += "-Dcom.github.fommil.netlib.NativeSystemBLAS.natives=mkl_rt.dll"
 javaOptions in test += "-Dcom.github.fommil.netlib.NativeSystemBLAS.natives=mkl_rt.dll"
 
-/*artifactName := { (sv: ScalaVersion, module: ModuleID, artifact: Artifact) =>
-  artifact.name + "_" + sv.binary + "-" + sparkVersion.value + "_" + module.revision + "." + artifact.extension
-}*/
+//artifactName := { (sv: ScalaVersion, module: ModuleID, artifact: Artifact) =>
+//artifact.name + "_" + sv.binary + "-" + sparkVersion.value + "_" + module.revision + "." + artifact.extension
+//}

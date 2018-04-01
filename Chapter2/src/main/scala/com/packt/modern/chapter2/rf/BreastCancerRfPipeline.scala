@@ -10,7 +10,7 @@ import org.apache.spark.mllib.evaluation.MulticlassMetrics
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.{DataFrame, Row}
 
-object BreastCancerRfPipeline$ extends WisconsinWrapper {
+object BreastCancerRfPipeline extends WisconsinWrapper {
 
       def main(args: Array[String]): Unit = {
 
@@ -123,31 +123,12 @@ object BreastCancerRfPipeline$ extends WisconsinWrapper {
 
             //Review of results: We just ran the test and our model created new columns Probability and Prediction
             //In this section we deal with things like accuracy, precision, confusion matrix, measure, etc
-            //Since the Iris dataset is a Multiclass Classification of Supervised Learning,  there is a Spark class
+            //Since the Breast Cancer  dataset is a Multiclass Classification problem of Supervised Learning, there is a Spark class
             //called Multiclass.
-            //The review section starts with the instantiation of the MulticlassMetrics class
-            //AT this point the output of our model's fit and transform process resulted in the following dataframe
-            /*
-        +--------------------+-------------------+-----+--------------------+--------------------+----------+
-        |iris-features-column|iris-species-column|label|       rawPrediction|         probability|prediction|
-          +--------------------+-------------------+-----+--------------------+--------------------+----------+
-        |   [4.4,3.2,1.3,0.2]|        Iris-setosa|  0.0|      [40.0,0.0,0.0]|       [1.0,0.0,0.0]|       0.0|
-        |   [5.4,3.9,1.3,0.4]|        Iris-setosa|  0.0|      [40.0,0.0,0.0]|       [1.0,0.0,0.0]|       0.0|
-        |   [5.4,3.9,1.7,0.4]|        Iris-setosa|  0.0|      [40.0,0.0,0.0]|       [1.0,0.0,0.0]|       0.0|
-        |   [5.6,3.0,4.1,1.3]|    Iris-versicolor|  2.0|[0.0,0.2863384677...|[0.0,0.0071584616...|       2.0|
-        |   [5.8,2.6,4.0,1.2]|    Iris-versicolor|  2.0|[0.0,0.6149098963...|[0.0,0.0153727474...|       2.0|
-        |   [6.0,2.2,4.0,1.0]|    Iris-versicolor|  2.0|[0.0,3.0846068660...|[0.0,0.0771151716...|       2.0|
-        |   [6.0,2.7,5.1,1.6]|    Iris-versicolor|  2.0|[0.0,31.273798965...|[0.0,0.7818449741...|       1.0|
-        |   [6.1,2.8,4.0,1.3]|    Iris-versicolor|  2.0|[0.0,0.6149098963...|[0.0,0.0153727474...|       2.0|
-        |   [6.1,3.0,4.9,1.8]|     Iris-virginica|  1.0|[0.0,33.362229785...|[0.0,0.8340557446...|       1.0|
-        |   [6.2,2.2,4.5,1.5]|    Iris-versicolor|  2.0|[0.0,4.6679401993...|[0.0,0.1166985049...|       2.0|
-        |   [6.2,2.8,4.8,1.8]|     Iris-virginica|  1.0|[0.0,26.668733850...|[0.0,0.6667183462...|       1.0|
-        |   [6.4,2.9,4.3,1.3]|    Iris-versicolor|  2.0|[0.0,0.2149098963...|[0.0,0.0053727474...|       2.0|
-        |   [6.5,3.2,5.1,2.0]|     Iris-virginica|  1.0|[0.0,39.926829268...|[0.0,0.9981707317...|       1.0|
-        |   [6.9,3.1,5.1,2.3]|     Iris-virginica|  1.0|[0.0,39.926829268...|[0.0,0.9981707317...|       1.0|
-        +--------------------+-------------------+-----+--------------------+--------------------+----------+
+            //The review section starts with the instantiation of the BinaryClassificationMetrics class
+            //AT this point the output of our model's fit and transform process resulted in the following dataframe:
+            //Display a DataFrame hereunder
 
-          */
 
             val validatedTestResultsDataset: DataFrame = validatedTestResults.select("prediction", "label")
             println("Validated TestSet Results Dataset is:  " + validatedTestResultsDataset.take(10))
@@ -178,9 +159,7 @@ object BreastCancerRfPipeline$ extends WisconsinWrapper {
 
             println("Accuracy (precision) is " + accuracy + " Weighted Precision is: " + weightedPrecsion)
 
-
       }
-
 
 }
 
